@@ -2,6 +2,9 @@
 
 @section('content')
 <div class="container">
+
+    <h1 class="text-center my-4">Admin Home</h1>
+
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -14,7 +17,7 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
+                    {{ Auth::user()->name }} {{ __('you are logged in!') }}
                 </div>
             </div>
         </div>
