@@ -44,6 +44,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('admin.posts.index') }}">Post</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('admin.posts.create') }}">Nuovo articolo</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -88,7 +91,7 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="container py-4">
             @yield('content')
         </main>
     </div>
