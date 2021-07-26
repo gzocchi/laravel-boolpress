@@ -25,5 +25,7 @@ Route::middleware('auth')
         Route::resource('posts', 'PostController');
     });
 
-// Rotte Pubbliche
-Route::get('/', 'HomeController@index')->name('home');
+// Rotte Pubbliche - Fallback
+Route::get('{any?}', 'HomeController@index')
+    ->where('any', '.*')
+    ->name('home');
