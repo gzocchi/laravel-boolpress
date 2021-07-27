@@ -29,6 +29,22 @@
                 value="{{ old('title', $post->title) }}"
                 required>
             </div>
+            <div class="form-group col-md-4 offset-md-4">
+                <label for="category_id">Categoria</label>
+                <select class="form-control
+                @error('category_id') is-invalid @enderror"
+                name="category_id"
+                id="category_id">
+                    <option value="">-- Seleziona una categoria --</option>
+                    @foreach ($categories as $category)
+                        <option value="{{ $category->id }}"
+                            {{ ($category->id == old('category_id', $post->category_id)) ? 'selected' : '' }}
+                            >
+                            {{ $category->name }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
         </div>
         
         <div class="form-row my-4">

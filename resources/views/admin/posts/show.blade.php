@@ -11,7 +11,16 @@
 
     <small>{{ $post->slug }}</small>
     <h1 class="mb-4 text-info">{{ $post->title }}</h1>
-    
+
+    <div class="category my-3">
+       <span>Categoria: </span>
+        @if ($post->category)        
+            <a href="{{ route('admin.categories.show', $post->category->id) }}" class="badge badge-info">{{ $post->category->name }}</a>
+        @else
+            <span class="badge badge-secondary">N/D</span>     
+        @endif 
+    </div>
+ 
     <p class="text-justify">{{ $post->content }}</p>
 
     <div class="text-center">

@@ -15,6 +15,7 @@
             <th scope="col">#</th>
             <th scope="col">Titolo</th>
             <th scope="col">Slug</th>
+            <th>Categoria</th>
             <th colspan="3" class="text-center">Azioni</th>
           </tr>
         </thead>
@@ -24,6 +25,13 @@
                     <th scope="row">{{ $item->id }}</th>
                     <td>{{ $item->title }}</td>
                     <td>{{ $item->slug }}</td>
+                    <td>
+                        @if ($item->category)
+                            {{ $item->category->name }}
+                        @else
+                            N/D
+                        @endif
+                    </td>
                     <td class="text-uppercase text-center align-middle">
                         <a href="{{ route("admin.posts.show", $item->id) }}" class="btn btn-sm btn-outline-success">Show</a>
                     </td>
