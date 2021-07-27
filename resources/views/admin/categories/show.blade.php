@@ -43,7 +43,12 @@
                 </tbody>
             </table>
         @else
-            <h2 class="text-center">Nessun articolo all'interno di questa categoria.</h2>   
+            <h2 class="text-center">Nessun articolo all'interno di questa categoria.</h2>
         @endif
+
+        <div class="text-center my-4">
+            <a href="{{ route("admin.posts.index") }}" class="btn btn-sm btn-info text-uppercase">Index</a>
+        </div>
+
     </div>
 @endsection
