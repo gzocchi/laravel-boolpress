@@ -47,6 +47,7 @@
         </div>
         
         <div class="form-row my-4">
+
             <div class="form-group col">
                 <label for="content">Articolo</label>
                 <textarea
@@ -57,6 +58,24 @@
                 rows="15"
                 required>{{ old('content') }}</textarea>
             </div>
+
+            <div class="form-group col-12 my-3 text-center">
+
+                @foreach ($tags as $tag)
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input"
+                        type="checkbox"
+                        id="tag-{{ $tag->id }}"
+                        value="{{ $tag->id }}"
+                        name="tags[]"
+                        {{ in_array($tag->id, old('tags', [])) ? 'checked' : '' }}
+                        >
+                        <label class="form-check-label" for="tag-{{ $tag->id }}">{{ $tag->name }}</label>
+                    </div>     
+                @endforeach
+
+            </div>
+            
         </div>
 
         <div class="text-center mt-4">

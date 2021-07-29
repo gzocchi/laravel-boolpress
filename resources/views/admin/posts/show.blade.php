@@ -8,9 +8,11 @@
             {{ session('message') }}
         </div>
     @endif
-
-    <small>{{ $post->slug }}</small>
-    <h1 class="mb-4 text-info">{{ $post->title }}</h1>
+    
+    <div class="title mb-4">
+        <small>{{ $post->slug }}</small>
+        <h1 class="text-info">{{ $post->title }}</h1>
+    </div>    
 
     <div class="category my-3">
        <span>Categoria: </span>
@@ -21,9 +23,19 @@
         @endif 
     </div>
  
-    <p class="text-justify">{{ $post->content }}</p>
+    <div class="text-justify">
+        <p>{{ $post->content }}</p>
+    </div>
 
-    <div class="text-center">
+    @if (count($post->tags) > 0)
+        <div class="my-2">
+            @foreach ($post->tags as $tag)
+                <span class="badge badge-pill {{ $loop->even ? 'badge-dark' : 'badge-secondary' }}">{{ $tag->name }}</span>    
+            @endforeach
+        </div>
+    @endif
+    
+    <div class="text-center mt-4">
         <a href="{{ route("admin.posts.index") }}" class="btn btn-sm btn-info text-uppercase">Index</a>
         <a href="{{ route("admin.posts.edit", $post->id) }}" class="btn btn-sm btn-outline-info text-uppercase">Edit</a>
     </div>
