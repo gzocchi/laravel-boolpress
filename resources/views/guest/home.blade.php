@@ -7,7 +7,7 @@
         <title>Home | {{ config('app.name') }}</title>
 
         <!-- CSS  -->
-        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/front.css') }}">
 
     </head>
     <body>
