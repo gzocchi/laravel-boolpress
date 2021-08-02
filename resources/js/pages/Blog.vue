@@ -1,5 +1,5 @@
 <template>
-  <section class="row">
+  <section class="row" v-if="posts.length > 0">
     <Card v-for="post in posts" :key="post.id" :post="post" />
 
     <div class="w-100 text-center my-3">
@@ -32,15 +32,19 @@
       </button>
     </div>
   </section>
+  <Loader v-else />
 </template>
 
 <script>
 import Card from "../components/Card";
+import Loader from "../components/Loader";
+
 
 export default {
   name: "Blog",
   components: {
     Card,
+    Loader
   },
 
   data() {

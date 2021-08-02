@@ -1,5 +1,5 @@
 <template>
-    <section>
+    <section v-if="!loading && post">
         <h1 class="text-center mb-5">{{ post.title }}</h1>
 
         <h4 :class="[post.tags.length > 0 ? 'mb-3' : 'mb-5']">
@@ -23,22 +23,24 @@
 
         <p class="text-justify">{{ post.content }}</p>
     </section>
+    <Loader v-else />
 </template>
 
 <script>
+import Loader from "../components/Loader";
+
 export default {
     name: "SinglePost",
-    data: function() {
+    components: { Loader },
+    data() {
         return {
             srvApi: "http://127.0.0.1:8000",
-            post: null
+            post: null,
+            loading: true
         };
     },
-    created: function() {
-        this.getPost(this.$route.params.slug);
-    },
     methods: {
-        getPost: function(slug) {
+        getPost(slug) {
             axios
                 .get(`${this.srvApi}/api/posts/${slug}`)
                 .then(res => {
@@ -48,7 +50,18 @@ export default {
                 .catch(err => {
                     console.log(err);
                 });
+        },
+        redirectPost() {
+            setTimeout(() => {
+                this.$router.push({ name: "not-found" });
+            }, 5000);
         }
+    },
+    created() {
+        this.getPost(this.$route.params.slug);
+    },
+    mounted() {
+        this.redirectPost();
     }
 };
 </script>

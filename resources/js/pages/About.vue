@@ -1,12 +1,12 @@
 <template>
     <section class="text-center py-5 my-5">
-        <h1>Home Page</h1>
+        <h1>Chi Siamo</h1>
     </section>
 </template>
 
 <script>
 export default {
-    name: "Home"
+    name: "About"
 };
 </script>
 
