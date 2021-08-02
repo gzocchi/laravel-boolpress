@@ -63,8 +63,6 @@ export default {
       axios
         .get(`${this.srvApi}/api/posts?page=${page}`)
         .then((res) => {
-          console.log(res.data);
-
           this.posts = res.data.data;
           this.current_page = res.data.current_page;
           this.last_page = res.data.last_page;

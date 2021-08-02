@@ -2169,7 +2169,6 @@ __webpack_require__.r(__webpack_exports__);
 
       var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
       axios.get("".concat(this.srvApi, "/api/posts?page=").concat(page)).then(function (res) {
-        console.log(res.data);
         _this.posts = res.data.data;
         _this.current_page = res.data.current_page;
         _this.last_page = res.data.last_page;
@@ -2310,26 +2309,31 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get("".concat(this.srvApi, "/api/posts/").concat(slug)).then(function (res) {
         _this.post = res.data;
-        _this.loading = false;
+
+        if (_this.post.slug) {
+          _this.loading = false;
+        }
       })["catch"](function (err) {
         console.log(err);
       });
     },
     redirectPost: function redirectPost() {
-      var _this2 = this;
-
-      setTimeout(function () {
-        _this2.$router.push({
-          name: "not-found"
-        });
-      }, 5000);
+      this.$router.push({
+        name: "not-found"
+      });
     }
   },
   created: function created() {
     this.getPost(this.$route.params.slug);
   },
   mounted: function mounted() {
-    this.redirectPost();
+    var _this2 = this;
+
+    setTimeout(function () {
+      if (_this2.loading) {
+        _this2.redirectPost();
+      }
+    }, 3000);
   }
 });
 
@@ -4043,8 +4047,8 @@ var render = function() {
           _vm._v(_vm._s(_vm.post.title))
         ]),
         _vm._v(" "),
-        _c("h4", { class: [_vm.post.tags.length > 0 ? "mb-3" : "mb-5"] }, [
-          _vm._v("\n        Categoria:\n        "),
+        _c("h5", { class: [_vm.post.tags.length > 0 ? "mb-3" : "mb-5"] }, [
+          _vm._v("\n    Categoria:\n    "),
           _vm.post.category
             ? _c("span", { staticClass: "badge badge-info" }, [
                 _vm._v(_vm._s(_vm.post.category.name))
@@ -4066,7 +4070,7 @@ var render = function() {
                     staticClass: "badge badge-pill mr-2",
                     class: [tag.id % 2 ? "badge-dark" : "badge-secondary"]
                   },
-                  [_vm._v("\n            " + _vm._s(tag.name) + "\n        ")]
+                  [_vm._v("\n      " + _vm._s(tag.name) + "\n    ")]
                 )
               }),
               0
@@ -20259,7 +20263,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _pages_About__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./pages/About */ "./resources/js/pages/About.vue");
 /* harmony import */ var _pages_Blog__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./pages/Blog */ "./resources/js/pages/Blog.vue");
 /* harmony import */ var _pages_Post__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./pages/Post */ "./resources/js/pages/Post.vue");
-/* harmony import */ var _pages_NotFound__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./pages/NotFound */ "./resources/js/pages/NotFound.vue");
+/* harmony import */ var _pages_NotFound__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./pages/NotFound */ "./resources/js/pages/NotFound.vue");
 // gestione dipendenze
 
 
@@ -20296,7 +20300,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   }, {
     path: '*',
     name: 'not-found',
-    component: _pages_NotFound__WEBPACK_IMPORTED_MODULE_8__["default"]
+    component: _pages_NotFound__WEBPACK_IMPORTED_MODULE_7__["default"]
   }]
 });
 /* harmony default export */ __webpack_exports__["default"] = (router);
