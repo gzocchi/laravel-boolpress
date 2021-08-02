@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Home | {{ config('app.name') }}</title>
+        <title>{{ config('app.name') }}</title>
 
         <!-- CSS  -->
         <link rel="stylesheet" href="{{ asset('css/front.css') }}">
