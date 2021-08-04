@@ -14,7 +14,7 @@
         </div>
     @endif
     
-    <form action="{{ route('admin.posts.update', $post->id) }}" method="POST">
+    <form action="{{ route('admin.posts.update', $post->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PATCH')
 
@@ -29,7 +29,14 @@
                 value="{{ old('title', $post->title) }}"
                 required>
             </div>
-            <div class="form-group col-md-4 offset-md-4">
+
+            @if ($post->cover)
+                <div class="col-md-4">
+                    <img class="img-fluid" src="{{ asset('storage/' . $post->cover) }}" alt="{{ $post->title }}"> 
+                </div>
+            @endif
+
+            <div class="form-group col-md-4 @if(!$post->cover) offset-md-4 @endif">
                 <label for="category_id">Categoria</label>
                 <select class="form-control
                 @error('category_id') is-invalid @enderror"
@@ -49,7 +56,7 @@
         
         <div class="form-row my-4">
 
-            <div class="form-group col">
+            <div class="form-group col-12">
                 <label for="content">Articolo</label>
                 <textarea
                 class="form-control @error('content') is-invalid @enderror"
@@ -60,7 +67,7 @@
                 required>{{ old('content', $post->content) }}</textarea>
             </div>
 
-            <div class="form-group col-12 my-3 text-center">
+            <div class="form-group col-md-8 my-3">
 
                 @foreach ($tags as $tag)
                     <div class="form-check form-check-inline">
@@ -85,7 +92,12 @@
                     </div>     
                 @endforeach
 
-            </div>    
+            </div>
+
+            <div class="form-group col-md-4 my-3">
+                <label for="cover" class="custom-file-label">Modifica immagine</label>
+                <input type="file" name="cover" class="custom-file-input @error('cover') is-invalid @enderror" id="cover">
+            </div>
 
         </div>
 

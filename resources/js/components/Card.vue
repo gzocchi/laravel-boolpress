@@ -1,7 +1,7 @@
 <template>
     <div class="col-md-4 my-2">
         <div class="card h-100">
-            <!-- <img src="#" class="card-img-top" alt="{{ post.slug }}" /> -->
+            <img :src="post.cover" class="card-img-top" :alt="post.slug" />
             <div class="card-body">
                 <h5 class="card-title">{{ post.title }}</h5>
                 <p class="card-text">{{ post.subText }}</p>

@@ -1,5 +1,6 @@
 <template>
   <section v-if="!loading && post">
+    
     <h1 class="text-center mb-5">{{ post.title }}</h1>
 
     <h5 :class="[post.tags.length > 0 ? 'mb-3' : 'mb-5']">
@@ -21,7 +22,15 @@
       </span>
     </div>
 
-    <p class="text-justify">{{ post.content }}</p>
+    <div class="row">
+      <div class="col-md-8">
+        <p class="text-justify">{{ post.content }}</p>
+      </div>
+      <div class="col-md-4">
+        <img class="img-fluid" :src="post.cover" :alt="post.title" />
+      </div>
+    </div>
+
   </section>
   <Loader v-else />
 </template>

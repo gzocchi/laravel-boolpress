@@ -23,8 +23,17 @@
         @endif 
     </div>
  
-    <div class="text-justify">
-        <p>{{ $post->content }}</p>
+    <div class="row">
+        <div class="col-md-8 text-justify">
+            <p>{{ $post->content }}</p>
+        </div>
+        <div class="col-md-4">
+            @if ($post->cover)
+                <img class="img-fluid" src="{{ asset('storage/' . $post->cover) }}" alt="{{ $post->title }}">
+            @else 
+                <img class="img-fluid" src="{{ asset('images/placeholder.png') }}" alt="{{ $post->title }}">    
+            @endif
+        </div>
     </div>
 
     @if (count($post->tags) > 0)

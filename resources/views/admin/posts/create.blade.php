@@ -13,7 +13,7 @@
         </div> 
     @endif
 
-    <form action="{{ route('admin.posts.store') }}" method="POST">
+    <form action="{{ route('admin.posts.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('POST')
 
@@ -48,7 +48,7 @@
         
         <div class="form-row my-4">
 
-            <div class="form-group col">
+            <div class="form-group col-12">
                 <label for="content">Articolo</label>
                 <textarea
                 class="form-control @error('content') is-invalid @enderror"
@@ -59,7 +59,7 @@
                 required>{{ old('content') }}</textarea>
             </div>
 
-            <div class="form-group col-12 my-3 text-center">
+            <div class="form-group col-md-8 my-3">
 
                 @foreach ($tags as $tag)
                     <div class="form-check form-check-inline">
@@ -75,13 +75,18 @@
                 @endforeach
 
             </div>
-            
+
+            <div class="form-group col-md-4 my-3">
+                <label for="cover" class="custom-file-label">Carica immagine</label>
+                <input type="file" name="cover" class="custom-file-input @error('cover') is-invalid @enderror" id="cover">
+            </div>
+
         </div>
 
         <div class="text-center mt-4">
             <button type="submit" class="btn btn-sm btn-success text-uppercase">Save</button>
         </div>
-        
+
     </form>
     
 </section>
